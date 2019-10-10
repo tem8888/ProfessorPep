@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Pool } = require ('pg');    
 const pool = new Pool({
+        port: 5432,
         host: "ec2-54-247-171-30.eu-west-1.compute.amazonaws.com",
         database: "d7qglb2p2tfh1r",
         user: "bwcvyvshzsuuqm",
@@ -260,4 +261,4 @@ client.on('guildMemberAdd', member => {
     }
  }});
  });
-client.login('process.env.BOT_TOKEN');
+client.login(process.env.BOT_TOKEN);
