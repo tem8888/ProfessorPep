@@ -94,7 +94,7 @@ if (message.channel.id === '631799183996747786') {
      question = exercise[0]
      answer = exercise[1];
      len = answer.length - 1;
-     message.channel.send(`\`\`\`yaml
+     message.channel.send(`\`\`\`fix
   ${question}, букв: ${len}\`\`\``);
     console.log('ответ= '+answer);
      var new_name_2 = [];
