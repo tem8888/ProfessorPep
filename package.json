@@ -1,0 +1,16 @@
+{
+  "name": "ProfessorPep",
+  "version": "1.0.0",
+  "description": "Quiz Discord bot",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "tem",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "pg": "^7.0",
+    "string-similarity":"3.0.0"
+  }
+}
