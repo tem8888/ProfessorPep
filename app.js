@@ -12,7 +12,7 @@ const pool = new Pool({
 
 prefix = '!';
 let answer; let exercise; let question; let randm; let new_name_2 = []; let check; let lines; let timerId;
-let hint; let len; let points; let total_points;
+let hint; let len; let points; let total_points; let firstAnswer = true;
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
@@ -154,8 +154,8 @@ if (answer) {
   check = stringSimilarity.compareTwoStrings(message.content, answer); 
 }
 
-if ((check == 1) && (message.author.bot == false)) {
-        
+if ((check == 1) && (message.author.bot == false) &&(firstAnswer)) {
+        firstAnswer = false;
         function getPoints(callback) {
                 pool.query('SELECT points FROM quiz WHERE id = $1', [message.author.id], (err, result) => {
                     if (err) 
