@@ -44,7 +44,7 @@ var stringSimilarity = require('string-similarity');
 // CLIENT.ON MESSAGE =>
 //---------------------
 client.on("message", (message) => {
-if (message.channel.id === '379950516970455043') {
+if (message.channel.id === '631799183996747786') {
   if(message.author.bot == false) 
   {
     var fs = require('fs');
