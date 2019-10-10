@@ -2,18 +2,11 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Pool } = require ('pg');    
 const pool = new Pool({
-  
-        port: 5432,
-        host: "localhost",
-        database: "postgres",
-        user: "postgres",
-        password: "!rafa1102"
-        /*
         host: "ec2-176-34-183-20.eu-west-1.compute.amazonaws.com",
         database: "db8kbpqunj4bar",
         user: "dmwrtkqpeftztn",
         password: "e6f4cfa3bee19ff031302f68cba1b1e54da7ff0166288c41b17e2f4908b24d0e",
-        ssl: true */
+        ssl: true 
 });
 
 prefix = '!';
@@ -29,19 +22,6 @@ client.on('ready', () => {
   client.user.setActivity('Викторину');
   pool.connect( (err, client, done) => {
     if(err) throw err; 
-            client.query('create table if not exists users( \
-                id text primary key, \
-                name text, \
-                n_message integer default 0, \
-                n_like integer default 0)', (err, result) => {
-                    //disconnent from database on error
-            });
-            client.query('create table if not exists bet_count( \
-                id text primary key, \
-                name text, \
-                n_count integer default 0)', (err, result) => {
-                    //disconnent from database on error
-            });
             client.query('create table if not exists quiz( \
                 id text primary key, \
                 name text, \
@@ -49,7 +29,6 @@ client.on('ready', () => {
                 points integer default 0)', (err, result) => {
                     //disconnent from database on error
             });
-
             
             });
   pool.connect(err => {
@@ -281,4 +260,4 @@ client.on('guildMemberAdd', member => {
     }
  }});
  });
-client.login('NTA0MDA3MTM2MTcxMzkzMDQ0.Dq-xag.d7RIewfwmhs6HhxAeFWiSYrxtag');
+client.login('NjMxNjM4NTc4NDM4NjAyNzUy.XZ8Ehw.8ui-KywmBklIq3SBREFWTNtCk4Q');
