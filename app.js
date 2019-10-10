@@ -131,7 +131,7 @@ if (message.channel.id === '631799183996747786') {
   }
 
   pod = new_name_2;
-  console.log('length='+len); // АБАЖУР - 8 символлов?
+  console.log('length='+len); 
   hint = 0;
  // message.channel.send(`Подсказка №${j}: ${pod[0]}`);
 
@@ -145,7 +145,7 @@ if (message.channel.id === '631799183996747786') {
           message.channel.send(`Слабаки, правильный ответ: ${answer}\nДля следующего вопроса введите !след`);
     //  setTimeout(function(){message.channel.send('!next')}, 2000); 
       }
-  }, 3500);
+  }, 8000);
 
 });
 }
