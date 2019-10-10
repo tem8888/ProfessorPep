@@ -225,8 +225,6 @@ if ((check == 1) && (message.author.bot == false)) {
                      message.channel.send(`**${message.author.username}**, ну конечно! **+${points} балл** в копилку! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
           }
-
-         // console.log(hint);
           clearInterval(timerId);
           timerId = false; 
          // setTimeout(async function(){message.channel.send('!next')}, 2000);
