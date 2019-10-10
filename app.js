@@ -144,6 +144,7 @@ if (message.channel.id === '631799183996747786') {
           clearInterval(timerId);
           timerId = false; 
           message.channel.send(`Слабаки, правильный ответ: ${answer}\nДля следующего вопроса введите !след`);
+              firstAnswer = false;
     //  setTimeout(function(){message.channel.send('!next')}, 2000); 
       }
   }, 8000);
