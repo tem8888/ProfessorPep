@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const { Pool } = require ('pg');    
 const pool = new Pool({
-        host: "ec2-176-34-183-20.eu-west-1.compute.amazonaws.com",
-        database: "db8kbpqunj4bar",
-        user: "dmwrtkqpeftztn",
-        password: "e6f4cfa3bee19ff031302f68cba1b1e54da7ff0166288c41b17e2f4908b24d0e",
+        host: "ec2-54-247-171-30.eu-west-1.compute.amazonaws.com",
+        database: "d7qglb2p2tfh1r",
+        user: "bwcvyvshzsuuqm",
+        password: "10072d3367cbf49aa08b89c769beb473f18c5965ee44434898c44adacfd90551",
         ssl: true 
 });
 
