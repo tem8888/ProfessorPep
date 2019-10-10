@@ -12,7 +12,7 @@ const pool = new Pool({
 
 prefix = '!';
 let answer; let exercise; let question; let randm; let new_name_2 = []; let check; let lines; let timerId;
-let hint; let len; let points; let total_points; let firstAnswer = true;
+let hint; let len; let points; let total_points; let firstAnswer;
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
