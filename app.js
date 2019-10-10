@@ -94,7 +94,7 @@ if (message.channel.id === '631799183996747786') {
      question = exercise[0]
      answer = exercise[1];
      len = answer.length - 1;
-     message.channel.send(`**${question}**, букв: ${len}`);
+     message.channel.send(`\`\`\`**${question}**, букв: ${len}\`\`\``);
     console.log('ответ= '+answer);
      var new_name_2 = [];
 
@@ -138,7 +138,7 @@ if (message.channel.id === '631799183996747786') {
 
   timerId = setInterval(function next() {
       if (pod[hint+1]) {
-        message.channel.send(`Подсказка №${hint+1}: ${pod[hint]}`);
+        message.channel.send(`\`\`\`Подсказка №${hint+1}: ${pod[hint]}\`\`\``);
         hint += 1;
       } else {
           clearInterval(timerId);
