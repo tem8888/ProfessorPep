@@ -88,6 +88,7 @@ if (message.channel.id === '631799183996747786') {
  }
   if ((message.content.startsWith("!старт") || message.content.startsWith("!след")) && (!timerId)) // нельзя повторно вызывать этот кусок кода, пока он не выполнился до конца
   {   
+     firstAnswer = true;     
      randm = Math.floor(Math.random() * 15900) ; //34010
      exercise = lines[randm].split('|');
      question = exercise[0]
