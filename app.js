@@ -48,7 +48,7 @@ if (message.channel.id === '631799183996747786') {
   if(message.author.bot == false) 
   {
     var fs = require('fs');
-    var data = fs.readFileSync('questions_test.txt', 'utf8');
+    var data = fs.readFileSync('questions.txt', 'utf8');
     lines = data.split('\n');
     //question = lines.split('|');
     //console.log(lines[2]);
@@ -88,7 +88,7 @@ if (message.channel.id === '631799183996747786') {
  }
   if ((message.content.startsWith("!старт") || message.content.startsWith("!след")) && (!timerId)) // нельзя повторно вызывать этот кусок кода, пока он не выполнился до конца
   {   
-     randm = Math.floor(Math.random() * 20) ; //34010
+     randm = Math.floor(Math.random() * 15900) ; //34010
      exercise = lines[randm].split('|');
      question = exercise[0]
      answer = exercise[1];
@@ -110,7 +110,7 @@ if (message.channel.id === '631799183996747786') {
       return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
    }
 
-  get_line('questions_test.txt', randm, function(err, line)   // получаем рандомную строку со словом из файла
+  get_line('questions.txt', randm, function(err, line)   // получаем рандомную строку со словом из файла
    { 
       let exer = line.split('|');
       let answ = exer[1];
