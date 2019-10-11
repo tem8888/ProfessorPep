@@ -93,13 +93,13 @@ if (message.channel.id === '631799183996747786') {
            });
         })
  }
-  if (message.content.startsWith("!турнир")) {
+  if ((message.content.startsWith("!турнир") && message.member.roles.has('370893800173731850')) {
     const args = message.content.slice(prefix.length).split(' ');
     const command = args.shift().toLowerCase();
     qNumber = args[0]; k = 1; //k - счетчик вопросов в турнирном режиме; qNumber - число вопросов
     message.channel.send(`Турнирный режим on. Вопросов: ${qNumber}. Для старта введите !след`);
 } else
-if (message.content.startsWith("!офф")) {
+if ((message.content.startsWith("!офф") && message.member.roles.has('370893800173731850')) {
     qNumber = 0; k = 0;
     pool.query('UPDATE quiz_tournament SET points = 0', (err, result) => {});
     message.channel.send(`Турнирный режим off.`);
@@ -166,7 +166,7 @@ if (message.content.startsWith("!офф")) {
           timerId = false; 
           message.channel.send(`Слабаки, правильный ответ: ${answer}\nДля следующего вопроса введите !след`);
               firstAnswer = false;
-              k += 1;
+              if (qNumber) k += 1;
     //  setTimeout(function(){message.channel.send('!next')}, 2000); 
       }
   }, 8000);
