@@ -93,7 +93,7 @@ if (message.channel.id === '631799183996747786') {
            });
         })
  }
-  if (message.content.startsWith("!тур")) {
+  if (message.content.startsWith("!турнир")) {
     const args = message.content.slice(prefix.length).split(' ');
     const command = args.shift().toLowerCase();
     qNumber = args[0]; k = 1; //k - счетчик вопросов в турнирном режиме; qNumber - число вопросов
