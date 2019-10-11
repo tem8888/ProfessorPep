@@ -80,7 +80,7 @@ if (message.channel.id === '631799183996747786') {
           fields: [
             {
               "name": 'Ник',
-              "value": `${name}`,
+              "value": `**${name}**`,
               "inline": true
             },
             {
