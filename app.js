@@ -158,7 +158,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
  // message.channel.send(`Подсказка №${j}: ${pod[0]}`);
 
   timerId = setInterval(function next() {
-      if (pod[hint+1]) {
+        if (pod[hint+1]) {
         message.channel.send(`> Подсказка №${hint+1}: ${pod[hint]}`);
         hint += 1;
       } else {
@@ -194,7 +194,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
             
            switch(hint) { //or false, depends on you case
               case 0:
-                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : 12;
+                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : (answer.length-1 < 12) ? 12 : 14;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
@@ -202,7 +202,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 1:
-                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : 10;
+                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 < 12) ? 10 : 12;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);          
                      } else {            
@@ -210,7 +210,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 2:
-                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : 8;
+                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 < 12) ? 8 : 10;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
@@ -218,7 +218,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 3:
-                 points = (answer.length-1 < 8) ? 4 : 6;
+                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 < 12) ? 6 : 8;
                 getPoints(function(err, total_points) {
                   if (err) {console.log("ERROR : ",err);           
                   } else {            
@@ -226,7 +226,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 4:
-                 points = (answer.length-1 < 8) ? 2 : 4;
+                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 < 12) ? 4 : 6;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
@@ -234,7 +234,15 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
               case 5:
-                 points = (answer.length-1 < 8) ? 1 : 2;
+                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 < 12) ? 3 : 4;
+                 getPoints(function(err, total_points) {
+                   if (err) {console.log("ERROR : ",err);           
+                   } else {            
+                     message.channel.send(`**${message.author.username}** методом тыка все же угадал ответ! **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                 }});
+                 break;
+               case 6:
+                 points = (answer.length-1 < 12) ? 2 : 3;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
@@ -279,7 +287,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
             
            switch(hint) { //or false, depends on you case
               case 0:
-                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : 12;
+                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : (answer.length-1 < 12) ? 12 : 14;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
@@ -288,7 +296,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 1:
-                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : 10;
+                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 < 12) ? 10 : 12;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);          
@@ -297,7 +305,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 2:
-                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : 8;
+                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 < 12) ? 8 : 10;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
@@ -306,7 +314,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 3:
-                 points = (answer.length-1 < 8) ? 4 : 6;
+                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 < 12) ? 6 : 8;
                  k += 1;
                 getPoints(function(err, total_points) {
                   if (err) {console.log("ERROR : ",err);           
@@ -315,7 +323,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 4:
-                 points = (answer.length-1 < 8) ? 2 : 4;
+                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 < 12) ? 4 : 6;
                  k += 1;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
@@ -324,7 +332,16 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
               case 5:
-                 points = (answer.length-1 < 8) ? 1 : 2;
+                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 < 12) ? 3 : 4;
+                 k += 1;
+                 getPoints(function(err, total_points) {
+                   if (err) {console.log("ERROR : ",err);           
+                   } else {            
+                     message.channel.send(`**${message.author.username}** методом тыка все же угадал ответ! **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                 }});
+                 break;
+               case 6:
+                 points = (answer.length-1 < 12) ? 2 : 3;
                  k += 1;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
