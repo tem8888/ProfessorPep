@@ -175,7 +175,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
 }
      
 if (answer) {
-  check = stringSimilarity.compareTwoStrings(message.content, answer); 
+  check = stringSimilarity.compareTwoStrings(message.content.toLowerCase(), answer); 
 }
 
 if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber)) {
