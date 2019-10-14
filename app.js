@@ -105,7 +105,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
      answer = exercise[1];
      len = answer.length - 1;
      if (!qNumber) message.channel.send(`\`\`\`fix
-  ${question}, букв: ${len}\`\`\``);
+  ${question} Букв = ${len}\`\`\``);
       else message.channel.send(`\`\`\`ini
 [Вопрос №${k}: ${question}, букв: ${len}]\`\`\``);
     console.log('ответ= '+answer);
