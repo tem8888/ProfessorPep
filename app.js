@@ -3,6 +3,7 @@ const client = new Discord.Client();
 var pool = require ('./clientpool.js'); 
 
 prefix = '!';
+const questions_amount = 120000;
 let answer; let exercise; let question; let randm; let new_name_2 = []; let check; let lines; let timerId;
 let hint; let len; let points; let total_points; let firstAnswer; let qNumber; let k;
 pool.on('error', (err, client) => {
@@ -99,7 +100,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
   if ((message.content.startsWith("!старт") || message.content.startsWith("!след")) && (!timerId)) // нельзя повторно вызывать этот кусок кода, пока он не выполнился до конца
   {   
      firstAnswer = true;     
-     randm = Math.floor(Math.random() * 15900) ; //34010
+     randm = Math.floor(Math.random() * questions_amount) ; //34010
      exercise = lines[randm].split('|');
      question = exercise[0]
      answer = exercise[1];
@@ -128,7 +129,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
    { 
       let exer = line.split('|');
       let answ = exer[1];
-      var new_name = answ.replace(/([А-ЯЁа-яёa-z])/gi,'•'); // замещаем все слово звездочками *
+      var new_name = answ.replace(/([А-ЯЁа-яёa-z0-9])/gi,'•'); // замещаем все слово звездочками *
       var id_index_array = []; // создаем массив для рандомных ключей
 // Генерируем уникальные индексы для открываемых букв
   function generateRandom(min, max) { 
@@ -136,12 +137,16 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
     if (id_index_array.length != len) { // выходим из функции, если длина массива равна длине слова
     return (id_index_array.includes(num)) ? generateRandom(min, max) : num;}
   }
-  
-  for (i=0; i<len-1; i++) { // цикл для собирания и открывания случайных букв
+//определяем кол-во подсказок в зависимости от длины слова
+  var hint_len = (len > 3 && len <= 8) ? 1 : (len > 8 && len <= 12) ? 2 : (len > 12 && len <= 15) ? 3 : (len > 16) ? 4 : 0; 
+ 
+  for (i=0; i<len-hint_len; i++) { // цикл для собирания и открывания случайных букв
       rand_index_2 = generateRandom(0, len-1); // возвращаем из функции уникальные значения индексов
       id_index_array.push(rand_index_2); // пушим их в массив
+    if ((answer[rand_index_2] != ' ') || (answer[rand_index_2] != ',')) {
       new_name = new_name.replaceAt(rand_index_2, ""+answer[rand_index_2]+""); // заменяем звездочки на буквы
       new_name_2.push(new_name); // пушим поочередные слова с открытыми буквами в массив
+    }
   }
 
   pod = new_name_2;
@@ -161,7 +166,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
               if (qNumber) k += 1;
     //  setTimeout(function(){message.channel.send('!next')}, 2000); 
       }
-  }, 8000);
+  }, 8500);
 
 });
 }
@@ -186,7 +191,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
             
            switch(hint) { //or false, depends on you case
               case 0:
-                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : (answer.length-1 < 12) ? 12 : 14;
+                 points = (answer.length-1 <= 3) ? 6 : (answer.length-1 <= 5) ? 8 : (answer.length-1 <= 8) ? 10 : (answer.length-1 <= 11) ? 12 : 14;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
@@ -194,7 +199,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 1:
-                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 < 12) ? 10 : 12;
+                 points = (answer.length-1 <= 3) ? 4 : (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 <= 11) ? 10 : 12;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);          
                      } else {            
@@ -202,7 +207,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 2:
-                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 < 12) ? 8 : 10;
+                 points = (answer.length-1 <= 3) ? 2 : (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 <= 11) ? 8 : 10;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
@@ -210,7 +215,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 3:
-                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 < 12) ? 6 : 8;
+                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 <= 11) ? 6 : 8;
                 getPoints(function(err, total_points) {
                   if (err) {console.log("ERROR : ",err);           
                   } else {            
@@ -218,7 +223,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 4:
-                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 < 12) ? 4 : 6;
+                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 <= 11) ? 4 : 6;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
@@ -226,7 +231,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
               case 5:
-                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 < 12) ? 3 : 4;
+                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 <= 11) ? 2 : 4;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
@@ -234,7 +239,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
                case 6:
-                 points = (answer.length-1 < 12) ? 2 : 3;
+                 points = (answer.length-1 <= 11) ? 1 : 2;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
@@ -279,7 +284,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
             
            switch(hint) { //or false, depends on you case
               case 0:
-                 points = (answer.length-1 < 5) ? 8 : (answer.length-1 < 8) ? 10 : (answer.length-1 < 12) ? 12 : 14;
+                 points = (answer.length-1 <= 3) ? 6 : (answer.length-1 <= 5) ? 8 : (answer.length-1 <= 8) ? 10 : (answer.length-1 <= 11) ? 12 : 14;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
@@ -288,7 +293,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 1:
-                 points = (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 < 12) ? 10 : 12;
+                 points = (answer.length-1 <= 3) ? 4 : (answer.length-1 < 5) ? 6 : (answer.length-1 < 8) ? 8 : (answer.length-1 <= 11) ? 10 : 12;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);          
@@ -297,7 +302,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 2:
-                 points = (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 < 12) ? 8 : 10;
+                 points = (answer.length-1 <= 3) ? 2 : (answer.length-1 < 5) ? 4 : (answer.length-1 < 8) ? 6 : (answer.length-1 <= 11) ? 8 : 10;
                  k += 1;
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
@@ -306,7 +311,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 3:
-                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 < 12) ? 6 : 8;
+                 points = (answer.length-1 < 8) ? 4 : (answer.length-1 <= 11) ? 6 : 8;
                  k += 1;
                 getPoints(function(err, total_points) {
                   if (err) {console.log("ERROR : ",err);           
@@ -315,7 +320,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                   }});
                  break;
               case 4:
-                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 < 12) ? 4 : 6;
+                 points = (answer.length-1 < 8) ? 2 : (answer.length-1 <= 11) ? 4 : 6;
                  k += 1;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
@@ -324,7 +329,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
               case 5:
-                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 < 12) ? 3 : 4;
+                 points = (answer.length-1 < 8) ? 1 : (answer.length-1 <= 11) ? 2 : 4;
                  k += 1;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
@@ -333,7 +338,7 @@ if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber))
                  }});
                  break;
                case 6:
-                 points = (answer.length-1 < 12) ? 2 : 3;
+                 points = (answer.length-1 <= 11) ? 1 : 2;
                  k += 1;
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
