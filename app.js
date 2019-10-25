@@ -144,7 +144,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
   for (i=0; i<len-hint_len; i++) { // цикл для собирания и открывания случайных букв
       rand_index_2 = generateRandom(0, len-1); // возвращаем из функции уникальные значения индексов
       id_index_array.push(rand_index_2); // пушим их в массив
-    if ((answer[rand_index_2] != ' ') || (answer[rand_index_2] != ',')) {
+    if ((answer[rand_index_2] != ' ')) {
       new_name = new_name.replaceAt(rand_index_2, ""+answer[rand_index_2]+""); // заменяем звездочки на буквы
       new_name_2.push(new_name); // пушим поочередные слова с открытыми буквами в массив
     }
