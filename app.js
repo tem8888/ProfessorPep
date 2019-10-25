@@ -130,7 +130,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
    { 
       let exer = line.split('|');
       let answ = exer[1];
-      var new_name = answ.replace(/([А-ЯЁа-яёa-z0-9])/gi,'•'); // замещаем все слово звездочками *
+      var new_name = answ.replace(/([А-ЯЁа-яёa-z0-9,.])/gi,'•'); // замещаем все слово звездочками *
       var id_index_array = []; // создаем массив для рандомных ключей
 // Генерируем уникальные индексы для открываемых букв
   function generateRandom(min, max) { 
@@ -173,7 +173,7 @@ if (message.content.startsWith("!офф") && message.member.roles.has('370893800
 }
      
 if (answer) {
-  check = stringSimilarity.compareTwoStrings(message.content.toLowerCase(), answer); 
+  check = stringSimilarity.compareTwoStrings(message.content.toLowerCase(), answer.toLowerCase()); 
 }
 
 if ((check == 1) && (message.author.bot == false) &&(firstAnswer) && (!qNumber)) {
