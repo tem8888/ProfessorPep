@@ -13,6 +13,24 @@ pool.on('error', (err, client) => {
   process.exit(-1)
 })
 
+/****************** Загрузка js файлов с командами ********************/
+fs.readdir('./commands/', (err, files) => {
+    if (err) console.log(err)
+
+    let jsfiles = files.filter(f=>f.split('.').pop() === 'js')
+    if(jsfiles.length <= 0) {
+        console.log('Нет команд'); 
+        return;
+   }
+
+    jsfiles.forEach((f,i) => {
+        let props = require('./commands/'+f);
+        console.log(`${f} loaded`);
+        client.commands.set(props.help.name, props)
+       })
+})
+
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('Викторину');
