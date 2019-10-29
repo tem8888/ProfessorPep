@@ -89,7 +89,7 @@ client.on("message", (message) => {
           question = quizLine[0]; // вопрос
           answer = quizLine[1]; // ответ
 
-
+let randCongrat = Math.floor(Math.random() * 6) + 1;
           len = answer.length - 1;
 message.channel.send(`\`\`\`fix
   ${question} | Букв = ${len}\`\`\``);
