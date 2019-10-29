@@ -26,7 +26,7 @@ module.exports.run = async (client, message, cmd, answer) => {
                  getPoints(async function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
-                      message.channel.send(`**${message.author.username}**${congrat.noHint[`${randCongrat}`]} заработано **${points} баллов**! Всего: ${total_points+points}\nВыбираю новый вопрос...`);
+                      message.channel.send(`**${message.author.username}**${congrat.noHint[`${randCongrat}`]} заработано **${points} баллов**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
                   }});
                  break;
               case 1:
