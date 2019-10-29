@@ -4,7 +4,7 @@ const pool = require ('./clientpool.js');
 var points_write = require ('./points.js');  
 const config = require('./config.js');
 const questions_amount = 120000;
-const url_file = 'questions.txt'
+const fs = require('fs');
 
 let answer; let exercise; let question; let randm; let new_name_2 = []; let check; let lines; let timerId;
 let hint; let len; let points; let total_points; let firstAnswer; let qNumber; let k;
