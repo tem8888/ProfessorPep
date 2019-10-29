@@ -5,6 +5,7 @@ var points_write = require ('./points.js');
 const config = require('./config.js');
 const questions_amount = 120000;
 const fs = require('fs');
+const congrat = require('./congrat.js');
 client.commands = new Discord.Collection();
 let quizLine; let question; let check; let timerId; let answer;
 let hint; let len; let points; let total_points; let qNumber; let k;
@@ -137,7 +138,7 @@ message.channel.send(`\`\`\`fix
           } else {
                 clearInterval(timerId);
                 timerId = false; 
-                message.channel.send(`Слабаки, правильный ответ: ${answer}\nВыбираю новый вопрос...`);
+                message.channel.send(`${congrat.noAnswer[`${randCongrat}`]} ${answer}\nДля следующего вопроса введите !след`);
            //   if (qNumber) k += 1; // для турнирного режима
         /*        setTimeout(async function(){ 
                     let next = await message.channel.send('!старт');
