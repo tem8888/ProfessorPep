@@ -5,7 +5,6 @@ const config = require('../config.js');
 module.exports.run = async (client, message, randm, line, question, answer) => { 
 	if (!client) {
 	 	clearInterval(timerId);
-	 	console.log('hint '+hint);
 	 	return hint;
 	}
     len = answer.length - 1;
@@ -17,7 +16,6 @@ module.exports.run = async (client, message, randm, line, question, answer) => {
 */
 	message.channel.send(`\`\`\`fix
   ${question} | Букв = ${len}\`\`\``);
-    console.log('ответ= '+answer);
     var hintArray = []; // массив слов-подсказок
 
     function get_line(filename, line_num, callback) {
@@ -50,9 +48,7 @@ module.exports.run = async (client, message, randm, line, question, answer) => {
     		}
   		}
         var pod = hintArray;
-    console.log(pod);
   	//	pod = new_name_2;
-  		console.log('length='+len); 
   		hint = 0;
 /******************ВЫВОД ПОДСКАЗОК****************/
   		timerId = setInterval(function next() {
@@ -62,7 +58,7 @@ module.exports.run = async (client, message, randm, line, question, answer) => {
       		} else {
           			clearInterval(timerId);
           			timerId = false; 
-          			message.channel.send(`Слабаки, правильный ответ: ${answer}\nВыбираю новый вопрос...`);
+          			message.channel.send(`Слабаки, правильный ответ: ${answer}\nДля следующего вопроса введите !след`);
            //   if (qNumber) k += 1; // для турнирного режима
    		  /*        setTimeout(async function(){ 
                     let next = await message.channel.send('!старт');
