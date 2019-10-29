@@ -5,9 +5,10 @@ var points_write = require ('./points.js');
 const config = require('./config.js');
 const questions_amount = 120000;
 const fs = require('fs');
-
-let answer; let exercise; let question; let randm; let new_name_2 = []; let check; let lines; let timerId;
-let hint; let len; let points; let total_points; let firstAnswer; let qNumber; let k;
+client.commands = new Discord.Collection();
+let quizLine; let question; let check; let timerId; let answer;
+let hint; let len; let points; let total_points; let qNumber; let k;
+let cmd; let firstAnswer;
 pool.on('error', (err, client) => {
   console.error('Unexpected error on idle client', err)
   process.exit(-1)
