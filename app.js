@@ -61,7 +61,6 @@ client.on('ready', () => {
   pool.connect(err => {
   if(err) throw err; 
   console.log('Connected to PostgresSQL'); });
-
  });
 
 var stringSimilarity = require('string-similarity');
