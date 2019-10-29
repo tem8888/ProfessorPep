@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const config = require('../config.js');
+const congrat = require('./congrat.js');
 
 module.exports.run = async (client, message, randm, line, question, answer) => { 
 	if (!client) {
@@ -8,6 +9,7 @@ module.exports.run = async (client, message, randm, line, question, answer) => {
 	 	return hint;
 	}
     len = answer.length - 1;
+    let randCongrat = Math.floor(Math.random() * 6) + 1;
      /* для турнира
      if (!qNumber) message.channel.send(`\`\`\`fix
   ${question} Букв = ${len}\`\`\``);
@@ -58,7 +60,7 @@ module.exports.run = async (client, message, randm, line, question, answer) => {
       		} else {
           			clearInterval(timerId);
           			timerId = false; 
-          			message.channel.send(`Слабаки, правильный ответ: ${answer}\nДля следующего вопроса введите !след`);
+          			message.channel.send(`${congrat.noAnswer[`${randCongrat}`]} ${answer}\nДля следующего вопроса введите !след`);
            //   if (qNumber) k += 1; // для турнирного режима
    		  /*        setTimeout(async function(){ 
                     let next = await message.channel.send('!старт');
