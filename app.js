@@ -82,14 +82,77 @@ client.on("message", (message) => {
       cmd = client.commands.get(command.slice(config.prefix.length))
       if ((cmd) && (cmd.help.name == 'след') && (!timerId) ) {
           firstAnswer = true;
+          timerId = true; 
           randm = Math.floor(Math.random() * (fullData.length-1)); // -1 из-за последней пустой строки в файле
           quizLine = fullData[randm].split('|'); // строка-массив вопрос|ответ
           question = quizLine[0]; // вопрос
           answer = quizLine[1]; // ответ
-          cmd.run(client, message, randm, quizLine, question, answer)
-          timerId = true; 
+
+
+          len = answer.length - 1;
+message.channel.send(`\`\`\`fix
+  ${question} | Букв = ${len}\`\`\``);
+    console.log('ответ= '+answer);
+    var hintArray = []; // массив слов-подсказок
+
+    function get_line(filename, line_num, callback) {
+        callback(null, quizLine); 
+    }
+
+    String.prototype.replaceAt=function(index, replacement) {
+      return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+    }
+
+    get_line(config.url_file, randm, function(err, line) {   // получаем рандомную строку со словом из файла
+      var hintWord = answer.replace(/([А-ЯЁа-яёa-z0-9,.])/gi,'•'); // замещаем все слово звездочками *
+      var id_index_array = []; // создаем массив для рандомных ключей
+// Генерируем уникальные индексы для открываемых букв
+      function generateRandom(min, max) { 
+        var num = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (id_index_array.length != len) { // выходим из функции, если длина массива равна длине слова
+          return (id_index_array.includes(num)) ? generateRandom(min, max) : num;
+        }
       }
-      else if (cmd) cmd.run(client, message)
+//определяем кол-во подсказок в зависимости от длины слова
+      var hint_len = (len > 3 && len <= 8) ? 2 : (len > 8 && len <= 12) ? 3 : (len > 12 && len <= 15) ? 4 : (len > 16) ? 5 : 1; 
+ 
+      for (i=0; i<len-hint_len; i++) { // цикл для собирания и открывания случайных букв
+          rand_index_2 = generateRandom(0, len-1); // возвращаем из функции уникальные значения индексов
+          id_index_array.push(rand_index_2); // пушим их в массив
+        if ((answer[rand_index_2] != ' ')) {
+            hintWord = hintWord.replaceAt(rand_index_2, ""+answer[rand_index_2]+""); // заменяем звездочки на буквы
+            hintArray.push(hintWord); // пушим поочередные слова с открытыми буквами в массив
+        }
+      }
+        var pod = hintArray;
+    console.log(pod);
+    //  pod = new_name_2;
+      console.log('length='+len); 
+      hint = 0;
+/******************ВЫВОД ПОДСКАЗОК****************/
+      timerId = setInterval(async function next() {
+          if (hintArray[hint]) {
+            message.channel.send(`> Подсказка №${hint+1}: ${hintArray[hint]}`);
+            hint += 1;
+          } else {
+                clearInterval(timerId);
+                timerId = false; 
+                message.channel.send(`Слабаки, правильный ответ: ${answer}\nВыбираю новый вопрос...`);
+           //   if (qNumber) k += 1; // для турнирного режима
+        /*        setTimeout(async function(){ 
+                    let next = await message.channel.send('!старт');
+                    await next.delete();
+                }, 2500); */
+          }
+        }, config.time_to_hint);
+  });
+
+
+
+   //       cmd.run(client, message, randm, quizLine, question, answer)
+          
+      }
+      else if ((cmd) && (cmd.help.name != 'след')) cmd.run(client, message)
       else return
     }
         
@@ -102,14 +165,13 @@ client.on("message", (message) => {
     if ((check == 1) && (message.author.bot == false) && (firstAnswer)) {
   //&& (!qNumber) для турнира
         points_write.run(client, message, cmd, answer);
+        clearInterval(timerId);
         timerId = false; 
         firstAnswer = false;
-
      /*   setTimeout(async function(){ 
             let next = await message.channel.send('!старт');
             await next.delete();
         }, 2500);*/
-      
     }
 
 });
