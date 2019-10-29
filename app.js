@@ -93,7 +93,6 @@ let randCongrat = Math.floor(Math.random() * 6) + 1;
           len = answer.length - 1;
 message.channel.send(`\`\`\`fix
   ${question} | Букв = ${len}\`\`\``);
-    console.log('ответ= '+answer);
     var hintArray = []; // массив слов-подсказок
 
     function get_line(filename, line_num, callback) {
@@ -126,9 +125,7 @@ message.channel.send(`\`\`\`fix
         }
       }
         var pod = hintArray;
-    console.log(pod);
     //  pod = new_name_2;
-      console.log('length='+len); 
       hint = 0;
 /******************ВЫВОД ПОДСКАЗОК****************/
       timerId = setInterval(async function next() {
