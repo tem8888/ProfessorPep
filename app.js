@@ -164,7 +164,7 @@ message.channel.send(`\`\`\`fix
 /****************** Если ответ верен - вывод сообщения и подсчет баллов ********************/
     if ((check == 1) && (message.author.bot == false) && (firstAnswer)) {
   //&& (!qNumber) для турнира
-        points_write.run(client, message, cmd, answer);
+        points_write.run(client, message, cmd, answer, hint);
         clearInterval(timerId);
         timerId = false; 
         firstAnswer = false;

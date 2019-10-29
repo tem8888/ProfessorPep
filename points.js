@@ -4,7 +4,7 @@ const config = require('./config.js');
 const congrat = require('./congrat.js');
 var points;
 
-module.exports.run = async (client, message, cmd, answer) => { 
+module.exports.run = async (client, message, cmd, answer, hint) => { 
    let randCongrat = Math.floor(Math.random() * 5) + 1;
         function getPoints(callback) {
                 pool.query('SELECT points FROM quiz WHERE id_user = $1', [message.author.id], (err, result) => {
@@ -18,7 +18,7 @@ module.exports.run = async (client, message, cmd, answer) => {
                 });
               }
               
-           cmd.run().then( hint => {
+        //   cmd.run().then( hint => {
 
            switch(hint) { //or false, depends on you case
               case 0:
@@ -85,7 +85,7 @@ module.exports.run = async (client, message, cmd, answer) => {
                      message.channel.send(`**${message.author.username}**${congrat.moreHint[`${randCongrat}`]} **+${points} балл** в копилку! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
           }
-       })
+     //  })
          
           pool.connect( (err, client_db, done) => {
                 if (err) throw err
