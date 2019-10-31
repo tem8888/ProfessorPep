@@ -173,7 +173,7 @@ message.channel.send(`\`\`\`fix
     }
 
 });
-
+/*
 client.on('guildMemberAdd', member => {
     const msg = member.guild.channels.get('370921566873059328');
     msg.send({embed:{
@@ -190,5 +190,5 @@ client.on('guildMemberAdd', member => {
       text: "Если вам нужна помощь, просто спросите 🙂"
     }
  }});
- });
+ });*/
 client.login(process.env.BOT_TOKEN);
