@@ -17,7 +17,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                       }
                 });
               }
-              
+        let nickname = message.member.nickname || message.author.username;
         //   cmd.run().then( hint => {
 
            switch(hint) { //or false, depends on you case
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(async function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
-                      message.channel.send(`**${message.member.nickname}**${congrat.noHint[`${randCongrat}`]} заработано **${points} баллов**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
+                      message.channel.send(`**${nickname}**${congrat.noHint[`${randCongrat}`]} заработано **${points} баллов**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
                   }});
                  break;
               case 1:
@@ -34,7 +34,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(async function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);          
                      } else {            
-                      message.channel.send(`**${message.member.nickname}**${congrat.hint1[`${randCongrat}`]} получено **${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
+                      message.channel.send(`**${nickname}**${congrat.hint1[`${randCongrat}`]} получено **${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
                   }});
                  break;
               case 2:
@@ -42,7 +42,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(function(err, total_points) {
                      if (err) {console.log("ERROR : ",err);           
                      } else {            
-                       message.channel.send(`**${message.member.nickname}**${congrat.hint2[`${randCongrat}`]} получено **${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
+                       message.channel.send(`**${nickname}**${congrat.hint2[`${randCongrat}`]} получено **${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
                   }});
                  break;
               case 3:
@@ -50,7 +50,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                 getPoints(function(err, total_points) {
                   if (err) {console.log("ERROR : ",err);           
                   } else {            
-                    message.channel.send(`**${message.member.nickname}**${congrat.hint3[`${randCongrat}`]} **+${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
+                    message.channel.send(`**${nickname}**${congrat.hint3[`${randCongrat}`]} **+${points} балл(-а,-ов)**! Всего: ${total_points+points}\nДля следующего вопроса введите !след`);
                   }});
                  break;
               case 4:
@@ -58,7 +58,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
-                     message.channel.send(`**${message.member.nickname}**${congrat.hint4[`${randCongrat}`]} **+${points} балл(-а,-ов)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                     message.channel.send(`**${nickname}**${congrat.hint4[`${randCongrat}`]} **+${points} балл(-а,-ов)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
                  break;
               case 5:
@@ -66,7 +66,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
-                     message.channel.send(`**${message.member.nickname}**${congrat.hint5[`${randCongrat}`]} **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                     message.channel.send(`**${nickname}**${congrat.hint5[`${randCongrat}`]} **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
                  break;
                case 6:
@@ -74,7 +74,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
-                     message.channel.send(`**${message.member.nickname}**${congrat.hint6[`${randCongrat}`]} **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                     message.channel.send(`**${nickname}**${congrat.hint6[`${randCongrat}`]} **+${points} балл(-а)**! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
                  break;
               default:
@@ -82,7 +82,7 @@ module.exports.run = async (client, message, cmd, answer, hint) => {
                  getPoints(function(err, total_points) {
                    if (err) {console.log("ERROR : ",err);           
                    } else {            
-                     message.channel.send(`**${message.member.nickname}**${congrat.moreHint[`${randCongrat}`]} **+${points} балл** в копилку! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
+                     message.channel.send(`**${nickname}**${congrat.moreHint[`${randCongrat}`]} **+${points} балл** в копилку! Всего: ${total_points + points}\nДля следующего вопроса введите !след`);
                  }});
           }
      //  })
