@@ -55,7 +55,7 @@ module.exports = async (client, msg) => {
                         questionInProgress = false;
                     }); 
                 }).catch(err => console.log(err));
-            }, 2500);
+            }, 3000);
             return;
         }
 
@@ -134,7 +134,7 @@ module.exports = async (client, msg) => {
                                 let skipNext = await msg.channel.send('!старт');
                                 await skipNext.delete();
 
-                            }, 2500); 
+                            }, 3000); 
                         } else { 
                             qNumber = 0, k = 0;  // на последнем вопросе отключаем турнир
                             GetTop.top(msg);
