@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require("path");
 
-let fullData = fs.readFileSync(path.join(__dirname, '../new-file.txt'),'utf8').split('\n');
+let fullData = fs.readFileSync(path.join(__dirname, '../questions.txt'),'utf8').split('\n');
 
 function getLine () {
 	let funcResult = [];
