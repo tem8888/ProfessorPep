@@ -19,41 +19,6 @@ let randCongrat = Math.floor(Math.random() * 5) + 1;
 
 module.exports = async (client, msg) => {
 
-    if (msg.content.length > 1024) {
-        await msg.react('👍🏽');
-    }
-        if (msg.content.startsWith(`==`)) {
- let txt_url = ''
-        let Attachment = (msg.attachments).array();
-        let ava_url = msg.author.avatarURL;
-        if (Attachment != '') txt_url = Attachment[0].url;
-
-        if (txt_url !== '' && txt_url.slice(-3) === 'txt')
-        snekfetch.get(txt_url).then(async (r) => {
-            let scont = r.body.toString();
-                scont = scont.split('|');
-                let bot_mes = await msg.channel.send({embed:{
-                    "title": `${scont[0]}`,
-                    "description": `${scont[1]}`,
-                    "color": 3553599,
-                    "author": {
-                        "name": `${msg.author.username}`,
-                        "icon_url": `${ava_url}`
-                    },
-                    "fields": [
-                      {
-                        "name": `${scont[2]}`,
-                        "value": `${scont[3]}`
-                      }
-                    ]
-                 }})
-            await bot_mes.react('👍🏽');
-            setTimeout(async function(){
-                await mes_del.delete(); 
-            }, 3000);
-        });
-      }
-
     if (msg.guild === null) return; // Реагируем только на сообщения на серверах, пропускаем сообщения в DM
 
      /********** Если ответ существует, сравниваем и возвращаем 1 если он совпадает с сообщением ********/
@@ -139,24 +104,6 @@ module.exports = async (client, msg) => {
                 }
             });
         }
-/*
-        if (msg.content.startsWith(`!защ`)) {
-            let protectList = msg.content.split('\n');
-            let ava_url = msg.author.avatarURL;
-            let randomPA = Math.floor(150 - Math.random() * (150+1-140));
-            await msg.delete(); 
-
-            await msg.channel.send({embed:{
-              "color": 3553599,
-              "description": `**${protectList[1]}** ➜ **${randomPA}**\n**${protectList[2]}** ➜ **${290-randomPA}**`,
-            "author": {
-                "name": `${msg.author.username} защищает`,
-                "icon_url": `${ava_url}`
-            },
-            }});
-
-        }*/
-
 
 	    if (msg.channel.id != guild.channelId) return msg.channel.send(['Викторина в этом канале не работает.',
             'Чтобы установить канал, введите ` [prefix]channel ID_канала ` (только для админов)']);
@@ -197,8 +144,6 @@ module.exports = async (client, msg) => {
   	    	    })	
   			}).catch(err => console.log(err));
 	    } 
-
-   
 
     if (msg.content.startsWith(`${prefix}обнулить`)) {
         if (!msg.member.hasPermission("MANAGE_GUILD")) return msg.channel.send("Это может сделать только админ сервера.");
