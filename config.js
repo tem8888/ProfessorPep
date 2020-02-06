@@ -1,8 +1,8 @@
 module.exports = {
 	"idOwner": "330832623435907076",
+  	"botToken"  : "NjMxNjM4NTc4NDM4NjAyNzUy.XjvkMw.OkQ2tVOSsV1sI6PnVDQUk6CsKBM",
     "prefix": "!",
     "url_file" : "questions.txt",
-    "time_to_hint" : "8500",
-    "channel" : "631799183996747786",
-    "skip_count" : "1"
+    "hintTime" : "8000",
+    "skipLimit" : "3"
 }
