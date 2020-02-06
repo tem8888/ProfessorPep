@@ -24,7 +24,7 @@ const mongoose = require('mongoose');
     useFindAndModify: false
   }).then(() => {
         console.log("Connected to the Mongodb database.");
-        return bot.login(config.botToken);
+        return bot.login(process.env.BOT_TOKEN);
     }).catch((err) => {
      //   bot.logger.log("Unable to connect to the Mongodb database. Error:"+err, "error");
     });;
