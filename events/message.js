@@ -55,7 +55,6 @@ module.exports = async (client, msg) => {
       }
 
     if (msg.guild === null) return; // Реагируем только на сообщения на серверах, пропускаем сообщения в DM
-    console.log('k '+k);
 
      /********** Если ответ существует, сравниваем и возвращаем 1 если он совпадает с сообщением ********/
     if ((typeof quizLine !== 'undefined') && questionInProgress) { // Существует ли такая переменная QuizLine?
