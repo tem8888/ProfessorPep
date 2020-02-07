@@ -104,8 +104,10 @@ module.exports = async (client, msg) => {
             });
         }
 
-	    if (msg.channel.id != guild.channelId) return msg.channel.send(['Викторина в этом канале не работает.',
-            'Чтобы установить канал, введите ` [prefix]channel ID_канала ` (только для админов)']);
+	    if (msg.channel.id != guild.channelId) return;
+
+//         msg.channel.send(['Викторина в этом канале не работает.',
+  //          'Чтобы установить канал, введите ` [prefix]channel ID_канала ` (только для админов)']);
 
 	    if ((msg.content === `${prefix}старт`) && (!questionInProgress)) {
             let randCongrat = Math.floor(Math.random() * 5) + 1;
