@@ -15,7 +15,6 @@ const GetTop = require('../functions/top_tour.js');
 let snekfetch = require("snekfetch");
 const congrat = require('../quiz/congrat.js');
 let firstAnswer; let questionInProgress = false; let check; let k = 0; let qNumber;
-let randCongrat = Math.floor(Math.random() * 5) + 1;
 
 module.exports = async (client, msg) => {
 
@@ -28,7 +27,7 @@ module.exports = async (client, msg) => {
 
     /****************** Если ответ верен - вывод сообщения и подсчет баллов ********************/
     if ((check == 1) && (firstAnswer)) {
-
+        
         // ТУРНИРНЫЙ РЕЖИМ
         if (qNumber) { 
             GetHints.interval(); // прерываем появление подсказок
@@ -55,7 +54,7 @@ module.exports = async (client, msg) => {
                         questionInProgress = false;
                     }); 
                 }).catch(err => console.log(err));
-            }, 3000);
+            }, 3500);
             return;
         }
 
@@ -76,7 +75,7 @@ module.exports = async (client, msg) => {
                     questionInProgress = false;
                 }); 
             }).catch(err => console.log(err));
-        }, 2500);
+        }, 3500);
       
     } 
 
@@ -109,7 +108,7 @@ module.exports = async (client, msg) => {
             'Чтобы установить канал, введите ` [prefix]channel ID_канала ` (только для админов)']);
 
 	    if ((msg.content === `${prefix}старт`) && (!questionInProgress)) {
-            
+            let randCongrat = Math.floor(Math.random() * 5) + 1;
   			questionInProgress = true;
   			firstAnswer = true;
 
@@ -134,7 +133,7 @@ module.exports = async (client, msg) => {
                                 let skipNext = await msg.channel.send('!старт');
                                 await skipNext.delete();
 
-                            }, 3000); 
+                            }, 3500); 
                         } else { 
                             qNumber = 0, k = 0;  // на последнем вопросе отключаем турнир
                             GetTop.top(msg);
