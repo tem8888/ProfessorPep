@@ -14,7 +14,7 @@ let showCongratTour = require ('../quiz/points_tour.js');
 const GetTop = require('../functions/top_tour.js'); 
 let snekfetch = require("snekfetch");
 const congrat = require('../quiz/congrat.js');
-let firstAnswer; let questionInProgress = false; let check; let k = 0; let qNumber;
+let firstAnswer; let questionInProgress = false; let check; let k = 0; let qNumber; let randCongrat;
 
 module.exports = async (client, msg) => {
 
@@ -110,7 +110,7 @@ module.exports = async (client, msg) => {
   //          'Чтобы установить канал, введите ` [prefix]channel ID_канала ` (только для админов)']);
 
 	    if ((msg.content === `${prefix}старт`) && (!questionInProgress)) {
-            let randCongrat = Math.floor(Math.random() * 5) + 1;
+            randCongrat = Math.floor(Math.random() * 5) + 1;
   			questionInProgress = true;
   			firstAnswer = true;
 
