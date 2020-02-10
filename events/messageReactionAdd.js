@@ -21,7 +21,7 @@ module.exports = async function(bot, reaction, user) {
 		skipUser = [];
 		return;
 	}
-
+/*
 	if (reaction.emoji.name === '⏩' && !skipUser.includes(user.id) && (reaction.message.id === questionID)) {
 		skipCount += 1;
 		skipUser.push(user.id);
@@ -41,7 +41,7 @@ module.exports = async function(bot, reaction, user) {
 		})
 
 	}
-
+*/
 	if (reaction.emoji.name === '🆗' && (reaction.message.id === voteMessageID)) {
 
 		if (voteCheck)	{ // Если вопрос в данный момент не активен, то выбираем новый
