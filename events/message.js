@@ -54,7 +54,7 @@ module.exports = async (client, msg) => {
                         questionInProgress = false;
                     }); 
                 }).catch(err => console.log(err));
-            }, 3500);
+            }, 4000);
             return;
         }
 
@@ -75,7 +75,7 @@ module.exports = async (client, msg) => {
                     questionInProgress = false;
                 }); 
             }).catch(err => console.log(err));
-        }, 3500);
+        }, 4000);
       
     } 
 
@@ -87,6 +87,7 @@ module.exports = async (client, msg) => {
 
         let checkBotStart = stringSimilarity.compareTwoStrings(msg.content, `${prefix}старт`);
         if (msg.author.bot && checkBotStart !== 1) return; // Пропускаем все сообщения бота кроме команды старта следующего вопроса
+        if (msg.author.bot && checkBotStart === 1) questionInProgress = false;;
 
         // Команды настроек викторины работающие во всех каналах
         let content = msg.content.split(" ");
@@ -135,7 +136,7 @@ module.exports = async (client, msg) => {
                                 let skipNext = await msg.channel.send('!старт');
                                 await skipNext.delete();
 
-                            }, 3500); 
+                            }, 4000); 
                         } else { 
                             qNumber = 0, k = 0;  // на последнем вопросе отключаем турнир
                             GetTop.top(msg);
