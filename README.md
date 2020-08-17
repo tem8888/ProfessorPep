@@ -1,2 +1,2 @@
 # ProfessorPep
-https://i.ibb.co/MGYbSMc/index.png
+![example](https://i.ibb.co/MGYbSMc/index.png)
