@@ -36,7 +36,7 @@ fs.readdir('./commands/', (err, files) => {
 
     let jsfiles = files.filter(f=>f.split('.').pop() === 'js')
     if(jsfiles.length <= 0) {
-        console.log('Нет команд'); 
+        console.log('Нет коmанд'); 
         return;
    }
 
