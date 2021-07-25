@@ -17,14 +17,11 @@ const mongoose = require('mongoose')
 ;(async () => {
   //
   await mongoose
-    .connect(
-      'mongodb+srv://tem_compass:w28PMquZLg8Bz8G@cluster0.gfb8j.mongodb.net/ProfessorPep?retryWrites=true&w=majority',
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      }
-    )
+    .connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    })
     .then(() => {
       console.log('Connected to the Mongodb database.')
       return bot.login(process.env.BOT_TOKEN)
