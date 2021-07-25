@@ -98,7 +98,7 @@ module.exports = async (client, msg) => {
         .catch((err) => console.log(err))
     }, 4000)
   }
-  console.log(msg.guild.id)
+
   GuildModel.findOne({ idGuild: msg.guild.id })
     .then(async (guild) => {
       let prefix = guild.prefix
