@@ -130,18 +130,19 @@ module.exports = async (client, msg) => {
           })
       }
 
-      if (msg.channel.id != guild.channelId) {
-        if (guild.channelId) {
-          msg.channel.send(
-            `Викторина работает в этом канале <#${guild.channelId}>.`
-          )
-        } else {
-          msg.channel.send(
-            `Установите канал для работы викторины через команду [${prefix}]channel ID_канала. (только для админов)`
-          )
-        }
-        return
-      }
+      if (msg.channel.id != guild.channelId) return
+      // {
+      //   if (guild.channelId) {
+      //     msg.channel.send(
+      //       `Викторина работает в этом канале <#${guild.channelId}>.`
+      //     )
+      //   } else {
+      //     msg.channel.send(
+      //       `Установите канал для работы викторины через команду [${prefix}]channel ID_канала. (только для админов)`
+      //     )
+      //   }
+      //   return
+      // }
 
       if (msg.content === `${prefix}старт` && !questionInProgress) {
         randCongrat = Math.floor(Math.random() * 5) + 1
